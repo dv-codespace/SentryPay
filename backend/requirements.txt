@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+twilio
+python-dotenv
+python-multipart
+SpeechRecognition
+pydub
+cmake
+face_recognition
+git+https://github.com/ageitgey/face_recognition_models.git
+numpy
+setuptools
+opencv-python-headless

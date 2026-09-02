@@ -1,70 +1,10 @@
-# Miscellaneous
-*.class
-*.log
-*.pyc
-*.swp
-.DS_Store
-.atom/
-.build/
-.buildlog/
-.history
-.svn/
-.swiftpm/
-migrate_working_dir/
+# ==========================================
+# SentryPay - Master .gitignore
+# ==========================================
 
-# IntelliJ related
-*.iml
-*.ipr
-*.iws
-.idea/
-
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
-
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins-dependencies
-.pub-cache/
-.pub/
-/build/
-/coverage/
-
-# Symbolication related
-app.*.symbols
-
-# Obfuscation related
-app.*.map.json
-
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
-
-# Python cache
-__pycache__/
-*.py[cod]
-
-# Python virtual environments
-venv/
-.venv/
-env/
-
-# AI model files
-# Scam language AI - large files
-scam-language/model/
-scam-language/models/
-scam-language/datasets/
-scam-language/dataset/
-
-# Python cache
-__pycache__/
-*.py[cod]
-
-# Large AI model files
+# ------------------------------------------
+# 1. AI / ML Models & Training Checkpoints
+# ------------------------------------------
 *.bin
 *.pt
 *.pth
@@ -72,67 +12,176 @@ __pycache__/
 *.safetensors
 *.onnx
 *.h5
+*.pkl
+*.joblib
+*.tflite
+*.pb
+*.pbtxt
+*.model
+*.tensor
 
-# Dataset files
+# Large AI model folders & checkpoints
+**/models/
+**/model/
+**/checkpoints/
+**/checkpoint-*/
+scam-language/model/
+scam-language/models/
+
+# Exception: Keep risk-engine baseline pre-trained model files required for risk engine service
+!security-layers/risk-engine/models/model.pkl
+!security-layers/risk-engine/models/scaler.pkl
+
+# ------------------------------------------
+# 2. Datasets & Raw/Cleaned Data
+# ------------------------------------------
+scam-language/datasets/
+scam-language/dataset/
+scam-check/#/
+scam-check/**/data/
+scam-check/**/raw/
+scam-check/**/cleaned/
+scam-check/**/final/
+datasets/
+dataset/
+
+# Raw dataset table files
 *.csv
 *.parquet
+*.feather
 
+# ------------------------------------------
+# 3. Archives & Compressed Files
+# ------------------------------------------
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.rar
+*.7z
+model.zip
 
-
-# Environment and secrets
+# ------------------------------------------
+# 4. Secrets & Environment Configurations
+# ------------------------------------------
 .env
 .env.*
 *.env
+lib/core/config/secrets.dart
+!lib/core/config/secrets.dart.example
+!backend/.env.example
+*.pem
+*.key
+*.p12
 
-# IDE
-.vscode/
-.idea/
-
-# Flutter generated files
+# ------------------------------------------
+# 5. Flutter / Dart / Mobile / Web Build Outputs
+# ------------------------------------------
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
+.pub-cache/
+.pub/
 build/
+/build/
+**/build/
+/coverage/
 
-# Android generated/local
+# Android generated files & local config
 android/.gradle/
 android/local.properties
+android/captures/
+android/app/debug
+android/app/profile
+android/app/release
+android/.cxx/
+android/key.properties
+**/*.keystore
+**/*.jks
 
-# iOS generated
+# iOS generated files
 ios/Pods/
 ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/app.framework
+ios/Flutter/ephemeral/
+ios/Flutter/.last_build_id
 
-# OS files
-.DS_Store
-Thumbs.db
+# macOS / Linux / Windows ephemeral builds
+macos/Flutter/ephemeral/
+linux/flutter/ephemeral/
+windows/flutter/ephemeral/
 
-# Logs and temporary files
-*.log
-*.tmp
-*.temp
+# Symbolication & Obfuscation
+app.*.symbols
+app.*.map.json
 
-# Custom secrets file
-lib/core/config/secrets.dart
+# ------------------------------------------
+# 6. Python Virtual Environments & Caches
+# ------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
 
-# Backend ignores
-backend/.env
+# Microservices specific venvs and cache
 backend/.venv/
 backend/venv/
 backend/env/
 backend/__pycache__/
 backend/*.py[cod]
 
-# Scam-Check ignores
-scam-check/#/
-scam-check/**/model/
-scam-check/**/models/
-scam-check/**/data/
-scam-check/**/raw/
-scam-check/**/cleaned/
-scam-check/**/final/
 scam-check/**/.venv/
 scam-check/**/venv/
 scam-check/**/env/
 scam-check/**/__pycache__/
 scam-check/**/*.py[cod]
+
+security-layers/**/.venv/
+security-layers/**/venv/
+security-layers/**/env/
+security-layers/**/__pycache__/
+security-layers/**/*.py[cod]
+
+# Python ML Caches
+.cache/
+.pytest_cache/
+.mypy_cache/
+huggingface/
+transformers_cache/
+
+# ------------------------------------------
+# 7. IDE & Editor Files
+# ------------------------------------------
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.history
+*.swp
+*.swo
+
+# ------------------------------------------
+# 8. OS & Temp Files
+# ------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+*.log
+*.tmp
+*.temp
